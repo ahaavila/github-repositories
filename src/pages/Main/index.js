@@ -51,7 +51,10 @@ export default class Main extends Component {
     try {
       const { newRepo, repositories } = this.state;
 
-      if()
+      // procuro no state newRepo se já existe um repositorio igual ao que o usuario digitou
+      const hasRepo = repositories.find((r) => r.name === newRepo);
+
+      if (hasRepo) throw new Error('Repositório duplicado');
 
       // pego o repositório na api passando o que foi digitado no input como newRepo
       const response = await api.get(`/repos/${newRepo}`);
